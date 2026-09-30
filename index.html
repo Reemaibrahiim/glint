@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="color-scheme" content="dark">
+<title>Glint | قريباً – ضوء صغير يوصل لك الرسالة وأنت في اللعب</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Changa:wght@500;700;800&family=IBM+Plex+Sans+Arabic:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#000; --panel:#070b14; --line:#14213d; --ink:#eaf4fd; --mute:#8fa3bd;
+  --glint:#4db3f5; --ice:#c4e3fa; --c:#4db3f5;
+  --prayer:#3ddc97; --meal:#ffb547; --call:#ff5c8a; --pause:#a78bfa;
+  box-sizing:border-box; color-scheme:dark;
+  padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-behavior:smooth;scroll-padding-top:76px}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;line-height:1.85;font-size:17px;overflow-x:hidden}
+h1,h2,h3{font-family:Changa,"IBM Plex Sans Arabic",sans-serif;line-height:1.25;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--ice);outline-offset:3px;border-radius:6px}
+.wrap{max-width:1120px;margin:auto;padding:0 22px}
+section{padding:92px 0}
+
+/* nav */
+nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:rgba(0,0,0,.78);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav .wrap{display:flex;align-items:center;justify-content:space-between;height:66px}
+.brand{display:flex;align-items:center;gap:10px;font-family:Changa;font-weight:800;font-size:24px;letter-spacing:.06em;text-decoration:none}
+.brand svg{width:30px;height:30px}
+nav ul{display:flex;gap:26px;list-style:none;margin:0;padding:0;font-size:15px;color:var(--mute)}
+nav ul a{text-decoration:none}nav ul a:hover{color:var(--ice)}
+.btn{display:inline-block;border:0;cursor:pointer;font:600 16px "IBM Plex Sans Arabic";color:#00121f;background:linear-gradient(135deg,var(--ice),var(--glint));padding:13px 28px;border-radius:12px;text-decoration:none;box-shadow:0 0 28px rgba(77,179,245,.35);transition:transform .15s,box-shadow .15s}
+.btn:hover{transform:translateY(-2px);box-shadow:0 0 42px rgba(77,179,245,.6)}
+.btn.ghost{background:none;color:var(--ink);border:1px solid var(--line);box-shadow:none}
+.btn.small{padding:8px 18px;font-size:14px}
+@media(max-width:760px){nav ul{display:none}}
+
+/* hero */
+.hero{padding:70px 0 40px;position:relative}
+.hero::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 50% at 50% 78%,color-mix(in srgb,var(--c) 22%,transparent),transparent 70%);transition:background .6s;pointer-events:none}
+.badge{display:inline-flex;gap:10px;align-items:center;border:1px solid var(--line);background:var(--panel);padding:6px 16px;border-radius:99px;font-size:14px;color:var(--ice)}
+.badge i{width:8px;height:8px;border-radius:50%;background:var(--prayer);box-shadow:0 0 10px var(--prayer);animation:blink 1.6s infinite}
+@keyframes blink{50%{opacity:.25}}
+.hero h1{font-size:clamp(38px,6.2vw,72px);font-weight:800;margin:22px 0 16px;max-width:15ch}
+.hero .lead{color:var(--mute);max-width:52ch;font-size:19px}
+.hero .cta{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}
+
+/* live rig */
+.rig{position:relative;margin:56px auto 0;max-width:860px}
+.monitor{border:2px solid #1b2c52;border-radius:16px;background:#02050b;aspect-ratio:16/8.6;position:relative;overflow:hidden;box-shadow:0 30px 80px rgba(0,0,0,.8)}
+.game{position:absolute;inset:0;background:
+  repeating-linear-gradient(0deg,rgba(255,255,255,.025) 0 2px,transparent 2px 4px),
+  linear-gradient(180deg,#0a1230 0%,#150b2e 55%,#05070f 100%)}
+.game .sun{position:absolute;left:50%;top:14%;width:150px;height:150px;transform:translateX(-50%);border-radius:50%;background:linear-gradient(#ff7ab8,#7a5cff);opacity:.85}
+.game .grid{position:absolute;left:-20%;right:-20%;bottom:0;height:46%;background:
+  linear-gradient(#5b6cff55 1px,transparent 1px) 0 0/100% 26px,
+  linear-gradient(90deg,#5b6cff55 1px,transparent 1px) 0 0/40px 100%;transform:perspective(220px) rotateX(58deg);transform-origin:bottom;animation:road 1.2s linear infinite}
+@keyframes road{to{background-position:0 26px,0 0}}
+.hud{position:absolute;top:12px;inset-inline:16px;display:flex;justify-content:space-between;font:600 13px Changa;color:#9fb6ff;direction:ltr}
+.stand{width:120px;height:26px;margin:0 auto;background:linear-gradient(#1b2c52,#0c1428);clip-path:polygon(28% 0,72% 0,100% 100%,0 100%)}
+.bar{width:min(58%,420px);height:12px;margin:14px auto 0;border-radius:99px;background:var(--c);box-shadow:0 0 22px var(--c),0 0 70px var(--c),0 30px 120px var(--c);transition:background .5s,box-shadow .5s;animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{50%{opacity:.45;filter:blur(1px)}}
+.toast{position:absolute;bottom:14px;inset-inline:0;text-align:center;font-size:13px;color:var(--mute);padding-top:0}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:26px}
+.chip{border:1px solid var(--line);background:var(--panel);color:var(--ink);font:500 15px "IBM Plex Sans Arabic";padding:9px 20px;border-radius:99px;cursor:pointer;transition:border-color .2s,background .2s}
+.chip[aria-pressed=true]{border-color:var(--c);background:color-mix(in srgb,var(--c) 16%,#000);box-shadow:0 0 18px color-mix(in srgb,var(--c) 40%,transparent)}
+.msg{text-align:center;margin-top:16px;min-height:1.9em;color:var(--ice);font-weight:500}
+.tag{font-size:13px;color:var(--mute);text-align:center;margin-top:6px}
+
+/* problem */
+.split{display:grid;grid-template-columns:1.1fr .9fr;gap:56px;align-items:center}
+h2{font-size:clamp(30px,4.4vw,48px);font-weight:800;margin-bottom:18px}
+.sub{color:var(--mute);max-width:56ch}
+.problem .sub+.sub{margin-top:14px}
+.big{display:grid;gap:18px}
+.stat{border-inline-start:3px solid var(--glint);padding:6px 20px}
+.stat b{font:800 54px/1.1 Changa;color:var(--ice);display:block}
+.stat span{color:var(--mute);font-size:15px}
+.bubble{position:relative;border:1px solid var(--line);border-radius:18px;padding:28px;background:linear-gradient(160deg,#08101f,#000)}
+.bubble .who{display:flex;gap:10px;align-items:center;color:var(--mute);font-size:14px;margin-bottom:12px}
+.bubble .who::before{content:"";width:9px;height:9px;border-radius:50%;background:var(--call)}
+.calls{display:grid;gap:10px}
+.calls div{background:#0b1426;border-radius:12px;padding:10px 16px;font-size:15px;display:flex;justify-content:space-between;gap:10px}
+.calls small{color:var(--call)}
+.calls div:last-child{opacity:.55}
+
+/* solution steps */
+.solution{background:linear-gradient(180deg,#000,#050a16 50%,#000)}
+.steps{display:grid;grid-template-columns:repeat(3,1fr);gap:0;margin-top:44px;border-block:1px solid var(--line)}
+.step{padding:34px 26px;border-inline-end:1px solid var(--line)}
+.step:last-child{border:0}
+.step em{font:800 40px Changa;font-style:normal;color:var(--glint)}
+.step h3{font-size:22px;margin:8px 0}
+.step p{color:var(--mute);font-size:15.5px}
+
+/* features */
+.feat{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:40px}
+.f{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;grid-column:span 2}
+.f.wide{grid-column:span 3}
+.f h3{font-size:21px;margin-bottom:8px;display:flex;gap:10px;align-items:center}
+.f h3 i{width:12px;height:12px;border-radius:50%;background:var(--k);box-shadow:0 0 14px var(--k)}
+.f p{color:var(--mute);font-size:15.5px}
+.f.soon{border-style:dashed}
+
+/* compare */
+.tbl{margin-top:36px;border:1px solid var(--line);border-radius:18px;overflow-x:auto}
+table{border-collapse:collapse;width:100%;min-width:560px;font-size:15.5px}
+th,td{padding:15px 22px;text-align:start;border-bottom:1px solid var(--line)}
+th{color:var(--mute);font-weight:500;background:var(--panel)}
+tr:last-child td{border:0}
+td:last-child{color:var(--ice);font-weight:600}
+td:nth-child(2){color:var(--mute)}
+
+/* video */
+.video{aspect-ratio:16/9;max-width:860px;margin:36px auto 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;position:relative;background:radial-gradient(60% 80% at 50% 100%,#0e2a55,#000)}
+.video iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.play{position:absolute;inset:0;display:grid;place-items:center;text-align:center;align-content:center;gap:14px}
+.play span{width:78px;height:78px;border-radius:50%;background:linear-gradient(135deg,var(--ice),var(--glint));display:grid;place-items:center;box-shadow:0 0 50px rgba(77,179,245,.6)}
+.play svg{width:28px;margin-inline-end:-4px;transform:scaleX(-1)}
+
+/* proof */
+.proof{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:38px}
+.proof div{text-align:center;padding:30px 12px;border-radius:18px;border:1px solid var(--line);background:var(--panel)}
+.proof b{font:800 58px/1 Changa;color:var(--ice);display:block}
+.proof span{color:var(--mute);font-size:15px;display:block;margin-top:8px}
+.note{color:var(--mute);font-size:13.5px;margin-top:16px;text-align:center}
+
+/* signup */
+.signup{background:radial-gradient(70% 90% at 50% 100%,#0b2454,#000 70%);text-align:center}
+.signup .sub{margin:0 auto}
+form{display:grid;gap:12px;max-width:470px;margin:34px auto 0;text-align:start}
+label{font-size:14px;color:var(--mute)}
+input,select{width:100%;padding:14px 16px;border-radius:12px;border:1px solid #1b2c52;background:#040810;color:var(--ink);font:500 16px "IBM Plex Sans Arabic"}
+input:focus,select:focus{border-color:var(--glint);outline:none;box-shadow:0 0 0 3px rgba(77,179,245,.25)}
+form .btn{width:100%;margin-top:6px;padding:15px}
+.ok{display:none;max-width:470px;margin:34px auto 0;padding:22px;border:1px solid var(--prayer);border-radius:14px;color:var(--prayer);background:rgba(61,220,151,.07)}
+
+footer{border-top:1px solid var(--line);padding:38px 0;color:var(--mute);font-size:14px}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:center}
+
+@media(max-width:860px){
+  section{padding:68px 0}
+  .split,.steps,.proof{grid-template-columns:1fr}
+  .step{border-inline-end:0;border-bottom:1px solid var(--line)}
+  .feat{grid-template-columns:1fr}.f,.f.wide{grid-column:auto}
+  .game .sun{width:90px;height:90px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute"><defs>
+<symbol id="star" viewBox="0 0 12 12"><g fill="#4db3f5"><rect x="5" y="0" width="2" height="1"/><rect x="5" y="11" width="2" height="1"/><rect x="0" y="5" width="1" height="2"/><rect x="11" y="5" width="1" height="2"/><rect x="4" y="2" width="4" height="8"/><rect x="2" y="4" width="8" height="4"/></g><g fill="#c4e3fa"><rect x="5" y="3" width="2" height="6"/><rect x="3" y="5" width="6" height="2"/></g><rect x="5" y="5" width="2" height="2" fill="#fff"/></symbol>
+</defs></svg>
+
+<nav><div class="wrap">
+  <a class="brand" href="#top" dir="ltr"><svg><use href="#star"/></svg>GLINT</a>
+  <ul><li><a href="#problem">المشكلة</a></li><li><a href="#solution">الحل</a></li><li><a href="#features">المميزات</a></li><li><a href="#video">الفيديو</a></li></ul>
+  <a class="btn small" href="#signup">سجّل اهتمامك</a>
+</div></nav>
+
+<header class="hero" id="top"><div class="wrap">
+  <span class="badge"><i></i>قريباً – نسخة ما قبل الإطلاق</span>
+  <h1>العب براحتك. وضوء صغير يذكّرك بالباقي.</h1>
+  <p class="lead">Glint إضاءة USB صغيرة بجانب شاشتك، تتصل بتطبيق الجوال وتضيء بهدوء في نظرك الجانبي عند وقت الصلاة أو العشاء أو اتصال أهلك، بدون صوت وبدون ما توقف لعبتك.</p>
+  <div class="cta"><a class="btn" href="#signup">كن من أوائل مجرّبي Glint</a><a class="btn ghost" href="#problem">شف المشكلة</a></div>
+
+  <div class="rig" aria-label="عرض تفاعلي لعمل Glint">
+    <div class="monitor">
+      <div class="game"><div class="sun"></div><div class="grid"></div></div>
+      <div class="hud"><span>SCORE 48,210</span><span>LV 12</span><span>♥ ♥ ♥</span></div>
+      <div class="toast" id="toast">اللعبة شغّالة بدون أي إشعار على الشاشة</div>
+    </div>
+    <div class="stand"></div>
+    <div class="bar" id="bar"></div>
+    <div class="chips" id="chips" role="group" aria-label="اختر تذكيراً">
+      <button class="chip" data-c="#3ddc97" data-m="حان وقت صلاة المغرب" aria-pressed="false">الصلاة</button>
+      <button class="chip" data-c="#ffb547" data-m="عندك امتحان.. يلا حان وقت المذاكرة" aria-pressed="false">الدراسة</button>
+      <button class="chip" data-c="#ff5c8a" data-m="ماما تتصل فيك" aria-pressed="false">اتصال العائلة</button>
+      <button class="chip" data-c="#a78bfa" data-m="لك ساعتين لعب، خذ استراحة" aria-pressed="false">الاستراحات</button>
+    </div>
+    <p class="msg" id="msg" aria-live="polite"></p>
+    <p class="tag">تصور تجريبي للمنتج – جرّب الأزرار لترى كيف يتغيّر لون الإضاءة</p>
+  </div>
+</div></header>
+
+<section id="problem" class="problem"><div class="wrap split">
+  <div>
+    <h2>السماعة تعزلك. واللعبة تسرق انتباهك كله.</h2>
+    <p class="sub">مع السماعات والشاشة الكاملة، تفوت اللاعب أشياء مهمة بدون قصد: أذان، وجبة، مكالمة من الأهل، أو حتى الوقت نفسه.</p>
+    <p class="sub">إشعارات الجوال ما تنفع لأنها ببساطة تمر بدون ما تُرى ولا تُسمع. والنتيجة صراخ من الأهل، وإزعاج للاعب، وتوتر في البيت.</p>
+    <div class="big" style="margin-top:34px">
+      <div class="stat"><b>69%</b><span>من المشاركين في استبياننا (212 مشاركاً) تفوتهم أمور مهمة أثناء اللعب أحياناً أو كثيراً</span></div>
+      <div class="stat"><b>50 مقابلة</b><span>مع أولياء أمور ولاعبين، وكل مشارك ذكر موقفاً حديثاً فاته فيه شيء أثناء اللعب</span></div>
+    </div>
+  </div>
+  <div class="bubble" aria-hidden="true">
+    <div class="who">الأم في المطبخ</div>
+    <div class="calls">
+      <div>يلا العشاء جاهز! <small>لم يُقرأ</small></div>
+      <div>سلطان؟! <small>لم يُقرأ</small></div>
+      <div>مكالمة فائتة <small>3 مرات</small></div>
+      <div>…تروح تدق باب الغرفة</div>
+    </div>
+  </div>
+</div></section>
+
+<section id="solution" class="solution"><div class="wrap">
+  <h2>رسالة تصلك بالضوء، مو بالصوت.</h2>
+  <p class="sub">Glint يحوّل التذكير إلى إشارة بصرية داخل مساحة لعبك نفسها. تراها بطرف عينك وتقرر متى تستجيب.</p>
+  <div class="steps">
+    <div class="step"><em>1</em><h3>وصّله وضعه جنب الشاشة</h3><p>يشتغل بكيبل USB من الجهاز أو الكونسول. بدون تركيب وبدون أسلاك كثيرة.</p></div>
+    <div class="step"><em>2</em><h3>اربطه بالتطبيق</h3><p>اتصال لاسلكي بالجوال، ثم أضف تذكيرك: صلاة، وجبة، استراحة، أو أي شي يهمك.</p></div>
+    <div class="step"><em>3</em><h3>لاحظ الوهج وكمّل لعبك</h3><p>يضيء عند الموعد بدون إيقاف اللعبة وبدون أي رسالة على الشاشة.</p></div>
+  </div>
+</div></section>
+
+<section id="features"><div class="wrap">
+  <h2>كل اللي تحتاجه، وبدون إزعاج.</h2>
+  <div class="feat">
+    <div class="f wide" style="--k:var(--prayer)"><h3><i></i>تذكير أوقات الصلاة</h3><p>الميزة الأكثر طلباً في أبحاثنا. يضيء بلون هادئ عند دخول الوقت ويكرر التنبيه لين تؤكد.</p></div>
+    <div class="f wide" style="--k:var(--call)"><h3><i></i>تنبيه العائلة</h3><p>الأهل يرسلون «العشاء جاهز» من تطبيقهم، فيصلك وهج بدون صراخ ولا طرق أبواب.</p></div>
+    <div class="f" style="--k:var(--meal)"><h3><i></i>الدراسة</h3><p>.مواعيد تسليماتك ماتروح عليك بسبب ماتش طويل</p></div>
+    <div class="f" style="--k:var(--pause)"><h3><i></i>استراحات وحدود وقت</h3><p>حدد وقتك بنفسك، والضوء يذكّرك بلطف.</p></div>
+    <div class="f" style="--k:var(--glint)"><h3><i></i>تذكيرات خاصة</h3><p>وجبات، دواء، ماء، أو أي شي تسميه أنت.</p></div>
+    <div class="f wide soon" style="--k:var(--ice)"><h3><i></i>ألوان وأنماط لكل تذكير</h3><p>تعرف نوع التذكير من اللون قبل ما تفتح الجوال. تتوفر في الخطة المدفوعة.</p></div>
+    <div class="f wide soon" style="--k:var(--ice)"><h3><i></i>تنبيه يتصاعد تدريجياً</h3><p>يبدأ خفيفاً، وإذا تجاهلته يصير أوضح. مبني على طلبات المشاركين في المقابلات.</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2>ليش Glint وليس تنبيهات الجوال؟</h2>
+  <div class="tbl"><table>
+    <thead><tr><th>البديل الحالي</th><th>المشكلة أثناء اللعب</th><th>ميزة Glint</th></tr></thead>
+    <tbody>
+      <tr><td>إشعارات الجوال</td><td>تمر بدون أن تُرى أو تُسمع</td><td>إضاءة ظاهرة بجانب الشاشة</td></tr>
+      <tr><td>المنبهات والتذكير الصوتي</td><td>السماعة تحجب الصوت</td><td>إشارة بصرية لا تعتمد على الصوت</td></tr>
+      <tr><td>اتصال الأهل ورسائلهم</td><td>اللاعب ما ينتبه لها</td><td>إشارة مخصصة داخل مساحة اللعب</td></tr>
+      <tr><td>تذكيرات نظام الكونسول</td><td>قد تقاطع تجربة اللعب</td><td>جهاز مستقل بذاته</td></tr>
+      <tr><td>الرقابة الأبوية</td><td>تقفل الجهاز وتسبب الخلافات</td><td>يذكّر وأنت من يقرر الاستجابة</td></tr>
+    </tbody>
+  </table></div>
+</div></section>
+
+<section id="video" style="padding-top:0"><div class="wrap" style="text-align:center">
+  <h2>شاهد Glint في 60 ثانية</h2>
+  <p class="sub" style="margin:auto">من المشكلة إلى الحل في فيديو قصير.</p>
+  <div class="video" id="videoBox">
+    <div class="play"><span><svg viewBox="0 0 24 24" fill="#00121f"><path d="M6 3l15 9-15 9z"/></svg></span><p class="sub">الفيديو التعريفي هنا</p></div>
+  </div>
+</div></section>
+
+<section style="padding-top:0"><div class="wrap">
+  <h2 style="text-align:center">الناس قالوا كلمتهم</h2>
+  <div class="proof">
+    <div><b>86%</b><span>وجدوا فكرة الضوء بجانب الشاشة مفيدة</span></div>
+    <div><b>80%</b><span>مهتمون بإرسال تنبيه ضوئي صامت للاعب</span></div>
+    <div><b>48%</b><span>اختاروا تذكير الصلاة ضمن أكثر ميزتين سيستخدمونها</span></div>
+  </div>
+  <p class="note">نتائج استبيان إلكتروني شمل 212 مشاركاً وبعينة ملائمة، فهي مؤشر أولي وليست تمثيلاً لكل اللاعبين.</p>
+</div></section>
+
+<section id="signup" class="signup"><div class="wrap">
+  <span class="badge"><i></i>قريباً</span>
+  <h2 style="margin-top:20px">كن من أوائل من يجرّب Glint</h2>
+  <p class="sub">سجّل بريدك وسنخبرك عند فتح باب الطلبات المسبقة. بدون رسائل مزعجة، ولن نشارك بياناتك مع أحد.</p>
+  <form id="form">
+    <div><label for="n">الاسم</label><input id="n" name="name" required autocomplete="name" placeholder="مثال: سلطان"></div>
+    <div><label for="e">البريد الإلكتروني</label><input id="e" name="email" type="email" required autocomplete="email" placeholder="you@example.com" dir="ltr"></div>
+    <div><label for="r">أنا</label>
+      <select id="r" name="role"><option>لاعب</option><option>ولي أمر</option><option>الاثنان</option></select></div>
+    <button class="btn" type="submit">سجّل اهتمامي</button>
+  </form>
+  <div class="ok" id="ok" role="status">تم تسجيلك. سنراسلك أول ما يقترب موعد الإطلاق.</div>
+</div></section>
+
+<footer><div class="wrap">
+  <a class="brand" href="#top" dir="ltr"><svg><use href="#star"/></svg>GLINT</a>
+  <span>مشروع طلابي في جامعة الملك سعود – IT427 – المنتج قيد التطوير</span>
+  <span>2026 © Glint</span>
+</div></footer>
+
+<script>
+(function(){
+  var root=document.documentElement, bar=document.getElementById('bar'),
+      msg=document.getElementById('msg'), toast=document.getElementById('toast'),
+      chips=[].slice.call(document.querySelectorAll('.chip')), i=0, manual=false, timer;
+  function pick(k){
+    var c=chips[k]; i=k;
+    chips.forEach(function(b){b.setAttribute('aria-pressed',b===c)});
+    root.style.setProperty('--c',c.dataset.c);
+    msg.textContent='«'+c.dataset.m+'»';
+    toast.textContent='الشاشة بدون أي رسالة، والوهج فقط يصلك';
+  }
+  chips.forEach(function(b,k){b.addEventListener('click',function(){manual=true;clearInterval(timer);pick(k)})});
+  pick(0);
+  timer=setInterval(function(){if(!manual)pick((i+1)%chips.length)},3800);
+
+  // ضع رابط الفيديو (رابط embed من يوتيوب) هنا ليظهر بدل الصورة
+  var VIDEO_URL="https://www.youtube.com/embed/0AtJz-0uW6Y";
+  if(VIDEO_URL){var f=document.createElement('iframe');f.src=VIDEO_URL;f.title='فيديو Glint التعريفي';f.allowFullscreen=true;
+    var b=document.getElementById('videoBox');b.innerHTML='';b.appendChild(f)}
+
+  // حفظ نموذج التسجيل (Formspree،)  
+  document.getElementById('form').addEventListener('submit', async function(e){
+  e.preventDefault();
+  var form=this, btn=form.querySelector('button');
+  btn.disabled=true; btn.textContent='جاري الإرسال...';
+  try{
+    var r=await fetch('https://formspree.io/f/xgavread',{
+      method:'POST', headers:{'Accept':'application/json'}, body:new FormData(form)
+    });
+    if(!r.ok) throw new Error();
+    form.style.display='none';
+    document.getElementById('ok').style.display='block';
+  }catch(_){
+    btn.disabled=false; btn.textContent='سجّل اهتمامي';
+    alert('صار خطأ في الإرسال، حاول مرة ثانية');
+  }
+});
+})();
+</script>
+</body>
+</html>
