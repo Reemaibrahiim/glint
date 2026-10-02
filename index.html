@@ -225,7 +225,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   <div class="feat">
     <div class="f wide" style="--k:var(--prayer)"><h3><i></i>تذكير أوقات الصلاة</h3><p>الميزة الأكثر طلباً في أبحاثنا. يضيء بلون هادئ عند دخول الوقت ويكرر التنبيه لين تؤكد.</p></div>
     <div class="f wide" style="--k:var(--call)"><h3><i></i>تنبيه العائلة</h3><p>الأهل يرسلون «العشاء جاهز» من تطبيقهم، فيصلك وهج بدون صراخ ولا طرق أبواب.</p></div>
-    <div class="f" style="--k:var(--meal)"><h3><i></i>الدراسة</h3><p>.مواعيد تسليماتك ماتروح عليك بسبب ماتش طويل</p></div>
+    <div class="f" style="--k:var(--meal)"><h3><i></i>الدراسة</h3><p>مواعيد تسليماتك ماتروح عليك بسبب ماتش طويل.</p></div>
     <div class="f" style="--k:var(--pause)"><h3><i></i>استراحات وحدود وقت</h3><p>حدد وقتك بنفسك، والضوء يذكّرك بلطف.</p></div>
     <div class="f" style="--k:var(--glint)"><h3><i></i>تذكيرات خاصة</h3><p>وجبات، دواء، ماء، أو أي شي تسميه أنت.</p></div>
     <div class="f wide soon" style="--k:var(--ice)"><h3><i></i>ألوان وأنماط لكل تذكير</h3><p>تعرف نوع التذكير من اللون قبل ما تفتح الجوال. تتوفر في الخطة المدفوعة.</p></div>
@@ -236,13 +236,12 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <section style="padding-top:0"><div class="wrap">
   <h2>ليش Glint وليس تنبيهات الجوال؟</h2>
   <div class="tbl"><table>
-    <thead><tr><th>البديل الحالي</th><th>المشكلة أثناء اللعب</th><th>ميزة Glint</th></tr></thead>
+    <thead><tr><th></th><th>المشكلة أثناء اللعب</th><th>ميزة Glint</th></tr></thead>
     <tbody>
       <tr><td>إشعارات الجوال</td><td>تمر بدون أن تُرى أو تُسمع</td><td>إضاءة ظاهرة بجانب الشاشة</td></tr>
       <tr><td>المنبهات والتذكير الصوتي</td><td>السماعة تحجب الصوت</td><td>إشارة بصرية لا تعتمد على الصوت</td></tr>
       <tr><td>اتصال الأهل ورسائلهم</td><td>اللاعب ما ينتبه لها</td><td>إشارة مخصصة داخل مساحة اللعب</td></tr>
       <tr><td>تذكيرات نظام الكونسول</td><td>قد تقاطع تجربة اللعب</td><td>جهاز مستقل بذاته</td></tr>
-      <tr><td>الرقابة الأبوية</td><td>تقفل الجهاز وتسبب الخلافات</td><td>يذكّر وأنت من يقرر الاستجابة</td></tr>
     </tbody>
   </table></div>
 </div></section>
@@ -281,7 +280,7 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 
 <footer><div class="wrap">
   <a class="brand" href="#top" dir="ltr"><svg><use href="#star"/></svg>GLINT</a>
-  <span>مشروع طلابي في جامعة الملك سعود – IT427 – المنتج قيد التطوير</span>
+  <span>مشروع طالبات تقنية معلومات في جامعة الملك سعود – IT427 – المنتج قيد التطوير</span>
   <span>2026 © Glint</span>
 </div></footer>
 
@@ -301,7 +300,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   pick(0);
   timer=setInterval(function(){if(!manual)pick((i+1)%chips.length)},3800);
 
-  // ضع رابط الفيديو (رابط embed من يوتيوب) هنا ليظهر بدل الصورة
   var VIDEO_URL="https://www.youtube.com/embed/0AtJz-0uW6Y";
   if(VIDEO_URL){var f=document.createElement('iframe');f.src=VIDEO_URL;f.title='فيديو Glint التعريفي';f.allowFullscreen=true;
     var b=document.getElementById('videoBox');b.innerHTML='';b.appendChild(f)}
