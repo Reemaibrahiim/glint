@@ -26,7 +26,7 @@
   padding-top:env(safe-area-inset-top,0px); padding-bottom:env(safe-area-inset-bottom,0px);
 }
 *,*::before,*::after{box-sizing:inherit}
-html{scroll-behavior:smooth;scroll-padding-top:76px}
+html{scroll-behavior:smooth;scroll-padding-top:0px}
 body{margin:0;background:var(--bg);color:var(--ink);font-family:"IBM Plex Sans Arabic",system-ui,sans-serif;line-height:1.85;font-size:17px;overflow-x:hidden}
 h1,h2,h3{font-family:Changa,"IBM Plex Sans Arabic",sans-serif;line-height:1.25;margin:0}
 p{margin:0}
@@ -167,19 +167,22 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
 <symbol id="star" viewBox="0 0 12 12"><g fill="#4db3f5"><rect x="5" y="0" width="2" height="1"/><rect x="5" y="11" width="2" height="1"/><rect x="0" y="5" width="1" height="2"/><rect x="11" y="5" width="1" height="2"/><rect x="4" y="2" width="4" height="8"/><rect x="2" y="4" width="8" height="4"/></g><g fill="#c4e3fa"><rect x="5" y="3" width="2" height="6"/><rect x="3" y="5" width="6" height="2"/></g><rect x="5" y="5" width="2" height="2" fill="#fff"/></symbol>
 </defs></svg>
 
-<nav><div class="wrap">
-  <a class="brand" href="#top" dir="ltr"><svg><use href="#star"/></svg>GLINT</a>
-  <ul><li><a href="#problem">المشكلة</a></li><li><a href="#solution">الحل</a></li><li><a href="#features">المميزات</a></li><li><a href="#video">الفيديو</a></li></ul>
-  <a class="btn small" href="#signup">سجّل اهتمامك</a>
-</div></nav>
-
 <header class="hero" id="top"><div class="wrap">
   <span class="badge"><i></i>قريباً – نسخة ما قبل الإطلاق</span>
   <h1>العب براحتك. وضوء صغير يذكّرك بالباقي.</h1>
   <p class="lead">Glint إضاءة USB صغيرة بجانب شاشتك، تتصل بتطبيق الجوال وتضيء بهدوء في نظرك الجانبي عند وقت الصلاة أو العشاء أو اتصال أهلك، بدون صوت وبدون ما توقف لعبتك.</p>
-  <div class="cta"><a class="btn" href="#signup">كن من أوائل مجرّبي Glint</a><a class="btn ghost" href="#problem">شف المشكلة</a></div>
 
-  <div class="rig" aria-label="عرض تفاعلي لعمل Glint">
+</div></header>
+
+<section id="solution" class="solution"><div class="wrap">
+  <h2>رسالة تصلك بالضوء، مو بالصوت.</h2>
+  <p class="sub">Glint يحوّل التذكير إلى إشارة بصرية داخل مساحة لعبك نفسها. تراها بطرف عينك وتقرر متى تستجيب.</p>
+  <div class="steps">
+    <div class="step"><em>1</em><h3>وصّله وضعه جنب الشاشة</h3><p>يشتغل بكيبل USB من الجهاز أو الكونسول. بدون تركيب وبدون أسلاك كثيرة.</p></div>
+    <div class="step"><em>2</em><h3>اربطه بالتطبيق</h3><p>اتصال لاسلكي بالجوال، ثم أضف تذكيرك: صلاة، وجبة، استراحة، أو أي شي يهمك.</p></div>
+    <div class="step"><em>3</em><h3>لاحظ الوهج وكمّل لعبك</h3><p>يضيء عند الموعد بدون إيقاف اللعبة وبدون أي رسالة على الشاشة.</p></div>
+  </div>
+<div class="rig" aria-label="عرض تفاعلي لعمل Glint">
     <div class="monitor">
       <div class="game"><div class="sun"></div><div class="grid"></div></div>
       <div class="hud"><span>SCORE 48,210</span><span>LV 12</span><span>♥ ♥ ♥</span></div>
@@ -196,37 +199,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
     <p class="msg" id="msg" aria-live="polite"></p>
     <p class="tag">تصور تجريبي للمنتج – جرّب الأزرار لترى كيف يتغيّر لون الإضاءة</p>
   </div>
-</div></header>
-
-<section id="problem" class="problem"><div class="wrap split">
-  <div>
-    <h2>السماعة تعزلك. واللعبة تسرق انتباهك كله.</h2>
-    <p class="sub">مع السماعات والشاشة الكاملة، تفوت اللاعب أشياء مهمة بدون قصد: أذان، وجبة، مكالمة من الأهل، أو حتى الوقت نفسه.</p>
-    <p class="sub">إشعارات الجوال ما تنفع لأنها ببساطة تمر بدون ما تُرى ولا تُسمع. والنتيجة صراخ من الأهل، وإزعاج للاعب، وتوتر في البيت.</p>
-    <div class="big" style="margin-top:34px">
-      <div class="stat"><b>69%</b><span>من المشاركين في استبياننا (212 مشاركاً) تفوتهم أمور مهمة أثناء اللعب أحياناً أو كثيراً</span></div>
-      <div class="stat"><b>50 مقابلة</b><span>مع أولياء أمور ولاعبين، وكل مشارك ذكر موقفاً حديثاً فاته فيه شيء أثناء اللعب</span></div>
-    </div>
-  </div>
-  <div class="bubble" aria-hidden="true">
-    <div class="who">الأم في المطبخ</div>
-    <div class="calls">
-      <div>يلا العشاء جاهز! <small>لم يُقرأ</small></div>
-      <div>سلطان؟! <small>لم يُقرأ</small></div>
-      <div>مكالمة فائتة <small>3 مرات</small></div>
-      <div>…تروح تدق باب الغرفة</div>
-    </div>
-  </div>
-</div></section>
-
-<section id="solution" class="solution"><div class="wrap">
-  <h2>رسالة تصلك بالضوء، مو بالصوت.</h2>
-  <p class="sub">Glint يحوّل التذكير إلى إشارة بصرية داخل مساحة لعبك نفسها. تراها بطرف عينك وتقرر متى تستجيب.</p>
-  <div class="steps">
-    <div class="step"><em>1</em><h3>وصّله وضعه جنب الشاشة</h3><p>يشتغل بكيبل USB من الجهاز أو الكونسول. بدون تركيب وبدون أسلاك كثيرة.</p></div>
-    <div class="step"><em>2</em><h3>اربطه بالتطبيق</h3><p>اتصال لاسلكي بالجوال، ثم أضف تذكيرك: صلاة، وجبة، استراحة، أو أي شي يهمك.</p></div>
-    <div class="step"><em>3</em><h3>لاحظ الوهج وكمّل لعبك</h3><p>يضيء عند الموعد بدون إيقاف اللعبة وبدون أي رسالة على الشاشة.</p></div>
-  </div>
 </div></section>
 
 <section id="features"><div class="wrap">
@@ -242,35 +214,17 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   </div>
 </div></section>
 
-<section style="padding-top:0"><div class="wrap">
-  <h2>ليش Glint وليس تنبيهات الجوال؟</h2>
-  <div class="tbl"><table>
-    <thead><tr><th></th><th>المشكلة أثناء اللعب</th><th>ميزة Glint</th></tr></thead>
-    <tbody>
-      <tr><td>إشعارات الجوال</td><td>تمر بدون أن تُرى أو تُسمع</td><td>إضاءة ظاهرة بجانب الشاشة</td></tr>
-      <tr><td>المنبهات والتذكير الصوتي</td><td>السماعة تحجب الصوت</td><td>إشارة بصرية لا تعتمد على الصوت</td></tr>
-      <tr><td>اتصال الأهل ورسائلهم</td><td>اللاعب ما ينتبه لها</td><td>إشارة مخصصة داخل مساحة اللعب</td></tr>
-      <tr><td>تذكيرات نظام الكونسول</td><td>قد تقاطع تجربة اللعب</td><td>جهاز مستقل بذاته</td></tr>
-    </tbody>
-  </table></div>
-</div></section>
-
 <section id="video" style="padding-top:0"><div class="wrap" style="text-align:center">
   <h2>شاهد Glint في 60 ثانية</h2>
   <p class="sub" style="margin:auto">من المشكلة إلى الحل في فيديو قصير.</p>
   <div class="video" id="videoBox">
-    <div class="play"><span><svg viewBox="0 0 24 24" fill="#00121f"><path d="M6 3l15 9-15 9z"/></svg></span><p class="sub">الفيديو التعريفي هنا</p></div>
+    <iframe
+      src="https://www.youtube.com/embed/y9_2BIzKGWY"
+      title="فيديو Glint التعريفي"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen></iframe>
   </div>
-</div></section>
-
-<section style="padding-top:0"><div class="wrap">
-  <h2 style="text-align:center">الناس قالوا كلمتهم</h2>
-  <div class="proof">
-    <div><b>86%</b><span>وجدوا فكرة الضوء بجانب الشاشة مفيدة</span></div>
-    <div><b>80%</b><span>مهتمون بإرسال تنبيه ضوئي صامت للاعب</span></div>
-    <div><b>48%</b><span>اختاروا تذكير الصلاة ضمن أكثر ميزتين سيستخدمونها</span></div>
-  </div>
-  <p class="note">نتائج استبيان إلكتروني شمل 212 مشاركاً وبعينة ملائمة، فهي مؤشر أولي وليست تمثيلاً لكل اللاعبين.</p>
 </div></section>
 
 <section id="signup" class="signup"><div class="wrap">
@@ -309,9 +263,6 @@ footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;
   pick(0);
   timer=setInterval(function(){if(!manual)pick((i+1)%chips.length)},3800);
 
-  var VIDEO_URL="https://www.youtube.com/embed/y9_2BIzKGWY";
-  if(VIDEO_URL){var f=document.createElement('iframe');f.src=VIDEO_URL;f.title='فيديو Glint التعريفي';f.allowFullscreen=true;
-    var b=document.getElementById('videoBox');b.innerHTML='';b.appendChild(f)}
 
   // حفظ نموذج التسجيل (Formspree،)  
   document.getElementById('form').addEventListener('submit', async function(e){
